@@ -1,0 +1,18 @@
+{
+  "name": "tw-simple-todo-app",
+  "version": "1.0.0",
+  "description": "Simple application using HTML5, CSS3 with Tailwind CSS, and JavaScript",
+  "main": "js/main.js",
+  "type": "module",
+  "repository": "https://github.com/MAbdurahman/tw-simple-todo-app.git",
+  "author": "Mahdi Abdurrahman <mdbdrrhm@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/main.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./css/main.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}

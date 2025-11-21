@@ -1,0 +1,944 @@
+@import "tailwindcss";
+
+@theme {
+   --font-body: 'Sen', sans-serif;
+
+   /************************* typography scale *************************/
+   --font-size-heading-01: 3.815rem;
+   --font-size-heading-02: 3.052rem;
+   --font-size-heading-03: 2.441rem;
+   --font-size-heading-04: 1.953rem;
+   --font-size-heading-05: 1.563rem;
+   --font-size-heading-06: 1.25rem;
+   --font-size-paragraph: 1rem;
+   --font-size-small: 0.8rem;
+   /************************* font weight *************************/
+   --font-weight-light: 300;
+   --font-weight-normal: 400;
+   --font-weight-medium: 600;
+   --font-weight-semibold: 700;
+   --font-weight-bold: 800;
+   --font-weight-black: 900;
+   /************************* colors *************************/
+   /* primary colors */
+   --color-blue-01-000: hsl(210.19, 100%, 98%);
+   --color-blue-01-100: hsl(210.19, 94%, 95%);
+   --color-blue-01-200: hsl(210.19, 90%, 90%);
+   --color-blue-01-300: hsl(210.19, 86%, 85%);
+   --color-blue-01-400: hsl(210.19, 82%, 80%);
+   --color-blue-01-500: hsl(210.19, 76%, 70%);
+   --color-blue-01-600: hsl(210.19, 70%, 40%);
+   --color-blue-01-700: hsl(210.19, 65%, 30%);
+   --color-blue-01-800: hsl(210.19, 60%, 20%);
+   --color-blue-01-900: hsl(210.19, 50%, 12%);
+   /* neutral colors */
+   --color-neutral-000: hsl(210.19, 0%, 98%);
+   --color-neutral-100: hsl(210.19, 0%, 88%);
+   --color-neutral-200: hsl(210.19, 0%, 78%);
+   --color-neutral-300: hsl(210.19, 0%, 68%);
+   --color-neutral-400: hsl(210.19, 0%, 58%);
+   --color-neutral-500: hsl(210.19, 0%, 48%);
+   --color-neutral-600: hsl(210.19, 0%, 38%);
+   --color-neutral-700: hsl(210.19, 0%, 28%);
+   --color-neutral-800: hsl(210.19, 0%, 18%);
+   --color-neutral-900: hsl(210.19, 0%, 10%);
+   /* augmented colors */
+   --color-augmented-000: hsl(210.19, 12%, 98%);
+   --color-augmented-100: hsl(210.19, 12%, 88%);
+   --color-augmented-200: hsl(210.19, 12%, 78%);
+   --color-augmented-300: hsl(210.19, 15%, 68%);
+   --color-augmented-400: hsl(210.19, 15%, 58%);
+   --color-augmented-500: hsl(210.19, 15%, 48%);
+   --color-augmented-600: hsl(210.19, 15%, 38%);
+   --color-augmented-700: hsl(210.19, 20%, 28%);
+   --color-augmented-800: hsl(210.19, 25%, 18%);
+   --color-augmented-900: hsl(210.19, 30%, 10%);
+   /************************* semantic colors *************************/
+   /* semantic inform colors */
+   --color-semantic-inform-400: hsl(215, 96%, 33%);
+   --color-semantic-inform-300: hsl(215, 96%, 38%);
+   --color-semantic-inform-200: hsl(215, 96%, 43%);
+   --color-semantic-inform-100: hsl(215, 96%, 48%);
+   /* semantic success colors */
+   --color-semantic-success-400: hsl(100, 96%, 33%);
+   --color-semantic-success-300: hsl(100, 96%, 38%);
+   --color-semantic-success-200: hsl(100, 96%, 43%);
+   --color-semantic-success-100: hsl(100, 96%, 48%);
+   /* semantic warn colors */
+   --color-semantic-warn-400: hsl(44.94, 96%, 50%);
+   --color-semantic-warn-300: hsl(44.94, 96%, 55%);
+   --color-semantic-warn-200: hsl(44.94, 96%, 60%);
+   --color-semantic-warn-100: hsl(44.94, 96%, 65%);
+   /* semantic extreme warn colors */
+   --color-semantic-extreme-warn-400: hsl(28.47, 96%, 50%);
+   --color-semantic-extreme-warn-300: hsl(28.47, 96%, 55%);
+   --color-semantic-extreme-warn-200: hsl(28.47, 96%, 60%);
+   --color-semantic-extreme-warn-100: hsl(28.47, 96%, 65%);
+   /* semantic alert colors */
+   --color-semantic-alert-400: hsl(0, 96%, 33%);
+   --color-semantic-alert-300: hsl(0, 96%, 38%);
+   --color-semantic-alert-200: hsl(0, 96%, 43%);
+   --color-semantic-alert-100: hsl(0, 96%, 48%);
+
+
+   --ease-basic-01: cubic-bezier(0.26, 0.1, 0.27, 1.55);
+   --ease-basic-02: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+   --ease: cubic-bezier(0.19, 0.08, 0.46, 0.99);
+   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+   --ease-in: cubic-bezier(0.33, 0.02, 0.84, 0.75);
+   --ease-out: cubic-bezier(0.05, 0.21, 0.66, 0.98);
+   --ease-in-out: cubic-bezier(0.38, 0, 0.57, 0.99);
+   --ease-linear: cubic-bezier(0.19, 0.08, 0.84, 0.75);
+   --ease-smooth: cubic-bezier(0.1, 0.7, 0.6, 0.9);
+   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+   --ease-snappy-01: cubic-bezier(0.5, 0, 0.4, 0.98);
+   --ease-snappy-02: cubic-bezier(.17, .67, .83, .67);
+
+   --radius-000: 1px;
+   --radius-100: 2px;
+   --radius-200: 3px;
+   --radius-300: 5px;
+   --radius-400: 8px;
+   --radius-500: 13px;
+   --radius-600: 21px;
+   --radius-700: 34px;
+   --radius-800: 55px;
+   --radius-900: 50%;
+
+   --breakpoint-xxs: 20rem;   /*320px */
+   --breakpoint-xs: 30rem;   /*480px */
+   --breakpoint-sm: 40rem;   /*640px */
+   --breakpoint-md: 48rem;   /*768px */
+   --breakpoint-lg: 64rem;   /*1024px;*/
+   --breakpoint-xl: 80rem;   /*1280px;*/
+   --breakpoint-2xl: 96rem;  /*1536px;*/
+   --breakpoint-3xl: 120rem; /*1920px;*/
+
+
+}
+
+@layer base {
+   /*===============================================================
+             Website Resets
+    ==================================================================*/
+   *,
+   *::after,
+   *::before {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+   }
+
+   *::-moz-focus-inner {
+      border: 0;
+   }
+
+   *:focus {
+      outline: none;
+   }
+
+   html {
+      scroll-behavior: smooth;
+   }
+
+   /*===============================================================
+          Typography Scale - 1.250 - Major Third
+   ==================================================================*/
+   h1, h2, h3, h4, h5, h6 {
+      font-family: 'Sen', sans-serif;
+      font-weight: 700;
+      text-rendering: optimizeLegibility;
+   }
+
+   h1 {
+      font-size: 3.815rem;
+   }
+
+   h2 {
+      font-size: 3.052rem;
+   }
+
+   h3 {
+      font-size: 2.441rem;
+   }
+
+   h4 {
+      font-size: 1.953rem;
+   }
+
+   h5 {
+      font-size: 1.563rem;
+   }
+
+   h6 {
+      font-size: 1.25rem;
+   }
+
+   p, small {
+      font-family: 'Sen', sans-serif;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+   }
+
+   p {
+      font-size: 1rem;
+   }
+
+   small {
+      font-size: 0.8rem;
+   }
+
+   img {
+      width: 100%;
+      height: auto;
+   }
+   ul {
+      list-style: none;
+   }
+
+   a {
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0.75;
+   }
+
+   a:hover {
+      cursor: pointer;
+      opacity: 1;
+   }
+
+   /*===============================================================
+          Scrollbar Styles
+==================================================================*/
+   /* width */
+   ::-webkit-scrollbar {
+      visibility: hidden;
+      width: 3px;
+      height: 5px;
+      background-color: transparent;
+
+   }
+
+   /* track */
+   ::-webkit-scrollbar-track {
+      margin-left: 1px;
+      /*box-shadow: inset 0 0 5px var(--color-blue-01-200);*/
+      border-radius: 3px;
+   }
+
+   /* handle */
+   ::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: var(--radius-200);
+      width: 3px;
+      height: 8px;
+      /*box-shadow: inset 0 0 5px var(--color-blue-01-200);*/
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.1, 0.7, 0.6, 0.9);
+      opacity: 0.75;
+   }
+
+   /* handle on hover */
+   ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-blue-01-600);
+      cursor: pointer;
+   }
+
+   /*===============================================================
+          ::placeholder styles
+   ==================================================================*/
+   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-weight: var(--font-weight-normal);
+      color: var(--color-augmented-700);
+      opacity: 0.5;
+   }
+   ::-moz-placeholder { /* Firefox 19+ */
+      font-weight: var(--font-weight-normal);
+      color: var(--color-augmented-700);
+      opacity: 0.5;
+   }
+   :-ms-input-placeholder { /* IE 10+ */
+      font-weight: var(--font-weight-normal);
+      color: var(--color-augmented-700);
+      opacity: 0.5;
+   }
+   :-moz-placeholder { /* Firefox 18- */
+      font-weight: var(--font-weight-normal);
+      color: var(--color-augmented-700);
+      opacity: 0.5;
+   }
+}
+
+
+/*===============================================================
+            website resets
+==================================================================*/
+*,
+*::after,
+*::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   outline: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+}
+
+*::-moz-focus-inner {
+   border: 0;
+}
+
+*:focus {
+   outline: none;
+}
+
+
+
+/*===============================================================
+            root, html, body, and utility classes
+==================================================================*/
+:root {
+
+   --font-body: 'Sen', sans-serif;
+   /************************* typography scale *************************/
+   --font-size-heading-01: 3.815rem;
+   --font-size-heading-02: 3.052rem;
+   --font-size-heading-03: 2.441rem;
+   --font-size-heading-04: 1.953rem;
+   --font-size-heading-05: 1.563rem;
+   --font-size-heading-06: 1.25rem;
+   --font-size-paragraph: 1rem;
+   --font-size-small: 0.8rem;
+
+   /************************* font weight *************************/
+   --font-weight-light: 400;
+   --font-weight-normal: 500;
+   --font-weight-medium: 600;
+   --font-weight-semibold: 700;
+   --font-weight-bold: 800;
+
+   /************************* colors *************************/
+   /* primary colors */
+   --color-blue-01-000: hsl(210.19, 100%, 98%);
+   --color-blue-01-100: hsl(210.19, 94%, 95%);
+   --color-blue-01-200: hsl(210.19, 90%, 90%);
+   --color-blue-01-300: hsl(210.19, 86%, 85%);
+   --color-blue-01-400: hsl(210.19, 82%, 80%);
+   --color-blue-01-500: hsl(210.19, 76%, 70%);
+   --color-blue-01-600: hsl(210.19, 70%, 40%);
+   --color-blue-01-700: hsl(210.19, 65%, 30%);
+   --color-blue-01-800: hsl(210.19, 60%, 20%);
+   --color-blue-01-900: hsl(210.19, 50%, 12%);
+   /* neutral colors */
+   --color-neutral-000: hsl(210.19, 0%, 98%);
+   --color-neutral-100: hsl(210.19, 0%, 88%);
+   --color-neutral-200: hsl(210.19, 0%, 78%);
+   --color-neutral-300: hsl(210.19, 0%, 68%);
+   --color-neutral-400: hsl(210.19, 0%, 58%);
+   --color-neutral-500: hsl(210.19, 0%, 48%);
+   --color-neutral-600: hsl(210.19, 0%, 38%);
+   --color-neutral-700: hsl(210.19, 0%, 28%);
+   --color-neutral-800: hsl(210.19, 0%, 18%);
+   --color-neutral-900: hsl(210.19, 0%, 10%);
+   /* augmented colors */
+   --color-augmented-000: hsl(210.19, 12%, 98%);
+   --color-augmented-100: hsl(210.19, 12%, 88%);
+   --color-augmented-200: hsl(210.19, 12%, 78%);
+   --color-augmented-300: hsl(210.19, 15%, 68%);
+   --color-augmented-400: hsl(210.19, 15%, 58%);
+   --color-augmented-500: hsl(210.19, 15%, 48%);
+   --color-augmented-600: hsl(210.19, 15%, 38%);
+   --color-augmented-700: hsl(210.19, 20%, 28%);
+   --color-augmented-800: hsl(210.19, 25%, 18%);
+   --color-augmented-900: hsl(210.19, 30%, 10%);
+   /************************* semantic colors *************************/
+   /* semantic underweight colors */
+   --color-semantic-underweight-400: hsl(215, 96%, 33%);
+   --color-semantic-underweight-300: hsl(215, 96%, 38%);
+   --color-semantic-underweight-200: hsl(215, 96%, 43%);
+   --color-semantic-underweight-100: hsl(215, 96%, 48%);
+   /* semantic normal colors */
+   --color-semantic-normal-400: hsl(100, 96%, 33%);
+   --color-semantic-normal-300: hsl(100, 96%, 38%);
+   --color-semantic-normal-200: hsl(100, 96%, 43%);
+   --color-semantic-normal-100: hsl(100, 96%, 48%);
+   /* semantic overweight colors */
+   --color-semantic-overweight-400: hsl(44.94, 96%, 50%);
+   --color-semantic-overweight-300: hsl(44.94, 96%, 55%);
+   --color-semantic-overweight-200: hsl(44.94, 96%, 60%);
+   --color-semantic-overweight-100: hsl(44.94, 96%, 65%);
+   /* semantic obese colors */
+   --color-semantic-obese-400: hsl(28.47, 96%, 50%);
+   --color-semantic-obese-300: hsl(28.47, 96%, 55%);
+   --color-semantic-obese-200: hsl(28.47, 96%, 60%);
+   --color-semantic-obese-100: hsl(28.47, 96%, 65%);
+   /* semantic extremely obese colors */
+   --color-semantic-extreme-obese-400: hsl(0, 96%, 33%);
+   --color-semantic-extreme-obese-300: hsl(0, 96%, 38%);
+   --color-semantic-extreme-obese-200: hsl(0, 96%, 43%);
+   --color-semantic-extreme-obese-100: hsl(0, 96%, 48%);
+
+
+   /**************** letter spacing ****************/
+   --ls-letter-spacing-100: 1px;
+   --ls-letter-spacing-200: 2px;
+   --ls-letter-spacing-300: 3px;
+   --ls-letter-spacing-400: 5px;
+   --ls-letter-spacing-500: -1px;
+   --ls-letter-spacing-600: -2px;
+   --ls-letter-spacing-700: -3px;
+   --ls-letter-spacing-800: -5px;
+
+}
+
+html {
+   font-size: 100%;
+   overflow-x: hidden;
+
+}
+@media (max-width: 576px) {
+   html {
+      font-size: 83.333%;
+   }
+}
+@media (max-width: 380px) {
+   html {
+      font-size: 75%;
+   }
+}
+
+body {
+   position: relative;
+   height: 100dvh;
+   width: 100dvw;
+   overflow-x: hidden;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-family: var(--font-body);
+   font-optical-sizing: auto;
+   font-weight: 400;
+   font-style: normal;
+   background-color: var(--color-neutral-000);
+}
+
+/*===============================================================
+            Typography Scale - 1.250 - Major Third
+==================================================================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: var(--font-body);
+   font-weight: 700;
+   text-rendering: optimizeLegibility;
+}
+
+h1 {
+   font-size: 3.815rem;
+}
+
+h2 {
+   font-size: 3.052rem;
+}
+
+h3 {
+   font-size: 2.441rem;
+}
+
+h4 {
+   font-size: 1.953rem;
+}
+
+h5 {
+   font-size: 1.563rem;
+}
+
+h6 {
+   font-size: 1.25rem;
+}
+
+p,
+small {
+   font-family: var()var(--font-body);
+   text-rendering: optimizeLegibility;
+}
+
+p {
+   font-size: 1rem;
+}
+
+small {
+   font-size: 0.8rem;
+}
+
+ul {
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+   cursor: pointer;
+   opacity: 0.75;
+}
+
+a:hover {
+   cursor: pointer;
+   opacity: 1;
+}
+
+fieldset,
+.col-3 {
+   width: 150%;
+}
+
+fieldset {
+   background-color: transparent;
+   border: 1px solid var(--color-neutral-500);
+}
+
+legend {
+   text-align: center;
+   font-weight: var(--font-weight-bold);
+   color: var(--color-neutral-800);
+   background-color: transparent;
+}
+
+/*===============================================================
+               input[type=number] styles
+==================================================================*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+   appearance: textfield;
+   -moz-appearance: textfield;
+}
+
+/************************* utility classes *************************/
+.utils-container-fluid {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-left: 16px;
+   padding-right: 16px;
+}
+
+.utils-container {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-left: 16px;
+   padding-right: 16px;
+}
+
+@media (min-width: 576px) {
+   .utils-container {
+      max-width: 544px;
+   }
+}
+
+@media (min-width: 768px) {
+   .utils-container {
+      max-width: 720px;
+   }
+}
+
+@media (min-width: 992px) {
+   .utils-container {
+      max-width: 960px;
+   }
+}
+
+@media (min-width: 1200px) {
+   .utils-container {
+      max-width: 1144px;
+   }
+}
+
+.utils-center-text {
+   text-align: center;
+}
+
+.utils-center-horizontally {
+   margin: auto;
+   width: 100%;
+
+}
+
+.utils-center-vertically {
+   position: absolute;
+   top: 50%;
+   transform: translate(0, -50%);
+
+}
+
+.utils-center-horizontally-vertically {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+
+}
+
+/************************* flexbox and grid helper classes *************************/
+.utils-flex-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.utils-grid-center {
+   display: grid;
+   place-items: center;
+}
+
+.utils-grid-container {
+   margin: 3em auto;
+   width: 90%;
+   display: grid;
+   row-gap: 3rem;
+   column-gap: 2rem;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.utils-grid-container-12 {
+   margin: 0 auto;
+   width: 90%;
+   display: grid;
+   row-gap: 3rem;
+   column-gap: 2rem;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.utils-grid-column-1 {
+   display: grid;
+   grid-template-columns: repeat(1, minmax(0, 1fr));
+   column-gap: 2rem;
+}
+
+.utils-grid-column-2 {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   column-gap: 2rem;
+}
+
+.utils-grid-column-3 {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   column-gap: 2rem;
+}
+
+.utils-grid-column-4 {
+   display: grid;
+   grid-template-columns: repeat(4, minmax(0, 1fr));
+   column-gap: 2rem;
+}
+
+.utils-grid-column-auto {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   column-gap: 2rem;
+}
+
+.utils-grid-cols-auto {
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.utils-grid-column-auto-fit {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   column-gap: 1rem;
+}
+
+.utils-add-cursor {
+   cursor: pointer !important;
+}
+
+fieldset legend {
+   font-weight: var(--font-weight-bold);
+}
+
+p>label {
+   margin-left: .25em;
+}
+.form-control {
+   margin-bottom: 1rem;
+}
+
+input[type="radio"] {
+   /* remove the blue button styling by default */
+   appearance: none;
+}
+
+input[type="radio"] {
+   width: 20px;
+   height: 20px;
+   margin-right: .5em;
+   margin-bottom: .7em;
+   border-radius: 10px;
+   /* remove the default square selection border when you toggle the radio button */
+   outline: none;
+   border: 2px solid var(--color-neutral-500);
+   /* Adjusts the position of the radio buttons on the text baseline */
+   vertical-align: -11px;
+}
+
+/* Basically, we build the styling for the radio button "inner circle" using the ::before pseudo element, but set a
+scale(0) transform on it. Remember, scale(0) means we set the original size of the red dot to zero size (in other words, we can't see it). We then use a CSS transition to make it nicely animate into view when the radio is
+selected/checked. */
+input[type="radio"]::before {
+   display: block;
+   /* we have to define a content property (I know, weird right!), even if we don't have any text inside. This is just how the ::before pseudo element works */
+   content: "";
+   width: 10px;
+   height: 10px;
+   border-radius: 10px;
+   background-color: var(--color-neutral-800);
+   font-size: 1em;
+   /* set the original position of red dot */
+   transform: translate(-30px, 0px) scale(0);
+   /* transition the dot back to starting position. The transition property is shorthand for 4 CSS properties: property, duration, timing-function and delay   */
+   transition: all 0.7s ease-in;
+}
+
+/* what happens when you check the box. Remember, the checked property will be applied to each radio button clicked on by default - the browser does this for us. This means we can target the :checked state. */
+input[type="radio"]:checked::before {
+   /* set the position of red dot when user clicks */
+   transform: translate(3px, 3px) scale(1);
+   /* animate the transition. We can use the cubic-bezier function which is a set of 4 values that determine our timing. Check out https://cubic-bezier.com/#.17,.67,.83,.67 to create your own custom transition  */
+   transition: all 0.3s cubic-bezier(.76, .74, .8, 1.52);
+}
+
+/* ================================================
+               preloader
+=================================================== */
+.preloader {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-image: radial-gradient(circle, #fafafa 28%, #fafafa 100%);
+   display: -webkit-box;
+   display: flex;
+   -webkit-box-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   justify-content: center;
+   z-index: 10000;
+}
+
+.preloader-gif {
+   width: 10%;
+   align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+   #preloader-gif {
+      width: 60%;
+   }
+}
+
+.heading {
+   margin-bottom: .333em;
+}
+
+.label-radio {
+   position: relative;
+   top: -3px;
+   font-weight: var(--font-weight-medium);
+
+}
+
+.col-3 {
+   position: relative;
+   float: left;
+   margin-top: 32px;
+}
+
+
+.effect-07 {
+   position: relative;
+   width: 100%;
+   display: inline-block;
+   padding: 8px 16px;
+   font: 20/1.5 var(--font-body);
+   letter-spacing: var(--ls-letter-spacing-100);
+   color: var(--color-neutral-800);
+   background-color: transparent;
+   border: 1px solid var(--color-neutral-500);
+
+}
+
+.effect-07~.focus-background {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 0;
+   height: 100%;
+   z-index: -1;
+   background-color: var(--color-neutral-100);
+   transition: 0.4s;
+}
+
+.effect-07:focus~.focus-background,
+.has-content.effect-07~.focus-background {
+   width: 100%;
+   transition: 0.4s;
+}
+
+.effect-07~label {
+   position: absolute;
+   left: 8px;
+   width: 100%;
+   top: 8px;
+   z-index: -1;
+   font-size: 16px;
+   letter-spacing: var(--ls-letter-spacing-100);
+   color: var(--color-neutral-800);
+   transition: 0.3s;
+}
+
+.effect-07:focus~label,
+.has-content.effect-07~label {
+   top: -16px;
+   font-size: 13px;
+   font-weight: 600;
+   letter-spacing: 1px;
+   color: var(--color-neutral-800);
+   transition: 0.3s;
+}
+
+
+.button-container {
+   position: relative;
+   width: 148%;
+   margin-top: 2em;
+   margin-bottom: 1em;
+   display: flex;
+   flex-direction: row;
+   gap: 1rem;
+
+}
+.input-container {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-content: space-evenly;
+}
+
+.calculate-button.button-3d,
+.reset-button.button-3d {
+   position: relative;
+   top: 0;
+   left: 0;
+   width: 50%;
+   height: 50px;
+   display: inline-block;
+   font-family: var(--font-body);
+   font-size: 1.125rem;
+   font-weight: var(--font-weight-semibold);
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   text-align: center;
+   border-radius: 0 0 5px 5px;
+   -webkit-border-radius: 0 0 5px 5px;
+   -moz-border-radius: 0 0 5px 5px;
+   -ms-border-radius: 0 0 5px 5px;
+   -o-border-radius: 0 0 5px 5px;
+   border: none;
+   box-shadow: 0 6px var(--color-neutral-400);
+   outline: none;
+   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -moz-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button.button-3d:after {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -moz-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button.button-3d:hover {
+   top: 2px;
+   box-shadow: 0 5px var(--color-neutral-500);
+}
+
+button.button-3d:active {
+   top: 6px;
+   box-shadow: 0 0 var(--color-augmented-000)
+}
+
+.calculate-button.button-3d {
+   background-color: var(--color-neutral-800);
+   color: var(--color-neutral-000);
+}
+.reset-button.button-3d {
+   background-color: var(--color-neutral-300);
+   color: var(--color-neutral-900);
+}
+
+
+.swal-button {
+   background-color: var(--color-neutral-800);
+   color: var(--color-neutral-000);
+}
+
+.swal-button:not([disabled]):hover {
+   background: var(--color-neutral-600) radial-gradient(circle, transparent 1%, var(--color-neutral-600) 1%) center/15000%;
+}
+
+.swal-button--cancel {
+   color: var(--color-neutral-000);
+   background-color: var(--color-semantic-extreme-obese-100);
+}
+
+.bmi-message {
+   visibility: hidden;
+   font-size: 1.75rem;
+}
+.display-block {
+   display:block !important;
+}
+
+.text-blue {
+   color: var(--color-semantic-underweight-200);
+}
+.text-green {
+   color: var(--color-semantic-normal-200);
+}
+.text-yellow {
+   color: var(--color-semantic-overweight-400);
+}
+.text-orange {
+   color: var(--color-semantic-obese-400);
+}
+.text-red {
+   color: var(--color-semantic-extreme-obese-300);
+}
