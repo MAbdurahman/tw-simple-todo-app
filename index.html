@@ -30,13 +30,38 @@
     <img src='img/preloader.gif' alt="3-gears" id="preloader-gif" class="preloader-gif"/>
 </div>
 <!-- begin of project-->
-<div class="container mx-auto">
-    <section>
-        <div class="text-center mt-12">
-            <h1 class="text-3xl uppercase font-heading text-neutral-900 font-bold">Welcome To TailwindCSS Setup</h1>
-            <h3 class="text-2xl mt-6 font-semibold font-body capitalize text-neutral-400">Simple Todo App</h3>
+<div class="wrapper">
+    <main id="main">
+        <div id="header">
+            <h1 class='header_title' id="title">Simple ToDo App</h1>
         </div>
-    </section>
+        <div id="add-container">
+            <section class="input-section">
+                <label for="add-input" style="display: none;"></label>
+                <input autocomplete="on" id="add-input" class="add-input" maxlength="28"
+                       placeholder="Enter todo item" type="text"/>
+                <span class="counter" id="counter">28</span>
+            </section>
+            <button type="button" class="button" id="add-button">Add Item</button>
+        </div>
+        <div id="list-container">
+            <ul id="list"></ul>
+        </div>
+    </main>
+    <template id="template">
+        <li class="todo-item" draggable="true">
+            <label class="custom" >
+                <input autocomplete="on" class="checkbox" name="item"
+                       type="checkbox"/>
+                <span class="item"></span>
+                <span class="checkmark"></span>
+            </label>
+            <span class="custom-label">
+                <i class='fas fa-edit'></i>
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </li>
+    </template>
 </div>
 
 <!-- jquery scripts -->
