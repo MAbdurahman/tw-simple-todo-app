@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-neutral-100: hsl(122.42, 0%, 88%);
+    --color-neutral-200: hsl(122.42, 0%, 78%);
     --color-neutral-300: hsl(122.42, 0%, 68%);
     --color-neutral-400: hsl(122.42, 0%, 58%);
     --color-neutral-500: hsl(122.42, 0%, 48%);
@@ -21,11 +22,17 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-body: 'Sen', sans-serif;
-    --color-green-01-600: hsl(122.42, 70%, 40%);
+    --color-purple-01-600: hsl(227.37, 42.22%, 55.88%);
+    --color-purple-01-700: hsl(227.37, 42.22%, 50.88%);
+    --color-purple-01-900: hsl(227.37, 42.22%, 35.88%);
     --color-neutral-000: hsl(122.42, 0%, 98%);
-    --color-augmented-000: hsl(122.42, 12%, 98%);
-    --color-augmented-700: hsl(122.42, 20%, 28%);
+    --color-augmented-000: hsl(227.37, 12%, 98%);
+    --color-augmented-600: hsl(227.37, 15%, 38%);
+    --color-augmented-700: hsl(227.37, 20%, 28%);
+    --color-semantic-warn-000: hsl(42.9, 74.4%, 49.02%);
+    --color-semantic-extreme-warn-300: hsl(28.47, 96%, 55%);
     --color-semantic-alert-400: hsl(0, 96%, 33%);
+    --color-semantic-alert-200: hsl(0, 96%, 43%);
     --radius-200: 3px;
     --letter-spacing-100: 1px;
   }
@@ -311,22 +318,41 @@
     outline: none;
   }
   html {
-    scroll-behavior: smooth;
+    font-size: 100%;
+    overflow-x: hidden;
+  }
+  @media (max-width: 576px) {
+    html {
+      font-size: 83.333%;
+    }
+  }
+  @media (max-width: 380px) {
+    html {
+      font-size: 75%;
+    }
   }
   body {
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
+    overflow-x: hidden;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'Sen', sans-serif;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-body);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     letter-spacing: 1px;
-    overflow-x: hidden;
+    background-color: var(--color-neutral-100);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sen', sans-serif;
     font-weight: 700;
     text-rendering: optimizeLegibility;
+    color: var(--color-purple-01-900);
   }
   h1 {
     font-size: 3.815rem;
@@ -393,7 +419,7 @@
     opacity: 0.75;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-green-01-600);
+    background-color: var(--color-purple-01-600);
     cursor: pointer;
   }
   ::-webkit-input-placeholder {
@@ -416,36 +442,6 @@
     color: var(--color-augmented-700);
     opacity: 0.5;
   }
-}
-html {
-  font-size: 100%;
-  overflow-x: hidden;
-}
-@media (max-width: 576px) {
-  html {
-    font-size: 83.333%;
-  }
-}
-@media (max-width: 380px) {
-  html {
-    font-size: 75%;
-  }
-}
-body {
-  position: relative;
-  height: 100dvh;
-  width: 100dvw;
-  overflow-x: hidden;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font-body);
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  background-color: var(--color-neutral-000);
 }
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -793,6 +789,10 @@ button.button-3d:active {
     max-width: 1140px;
   }
 }
+.outer-container {
+  position: absolute;
+  top: 15%;
+}
 #main {
   max-width: 640px;
   width: 640px;
@@ -809,7 +809,7 @@ button.button-3d:active {
     width: calc(100% - 1px);
   }
 }
-#header {
+.header {
   height: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -817,13 +817,14 @@ button.button-3d:active {
   justify-content: center;
   align-items: center;
 }
+.header_title {
+  font-family: var(--font-body);
+  color: var(--color-purple-01-900);
+}
 #add-container {
   display: flex;
   flex-flow: row;
   justify-content: center;
-}
-#title {
-  font-family: var(--font-body);
 }
 .input-section {
   flex-basis: 65%;
@@ -831,19 +832,20 @@ button.button-3d:active {
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
-  border: 4px solid #404040;
+  border: 2px solid #404040;
+  border: 2px solid var(--color-purple-01-600);
   border-right: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 .counter {
   position: absolute;
   top: 15px;
   right: 10px;
-  border-left: 2px solid #111111;
   padding-left: 8px;
   padding-right: 8px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
+  border-left: 3px solid var(--color-purple-01-600);
 }
 @media screen and (max-width: 425px) {
   .input-section {
@@ -867,7 +869,7 @@ button.button-3d:active {
   letter-spacing: 1px;
   border: none;
   text-transform: capitalize;
-  caret-color: #404040;
+  caret-color: var(--color-augmented-700);
   caret-shape: block;
 }
 #list-container {
@@ -900,10 +902,10 @@ span.custom-label {
 }
 .button {
   padding: .5em 1em;
-  border: 3px solid #404040;
+  border: 3px solid var(--color-purple-01-600);
   border-radius: 5px;
-  color: #d9d9d9;
-  background-color: #111111;
+  color: var(--color-neutral-000);
+  background: var(--color-purple-01-600);
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -912,11 +914,12 @@ span.custom-label {
   transition: all 0.333s ease-in-out;
 }
 .button:hover {
-  color: hsl(0, 0%, 100%);
-  background: #626262 radial-gradient(circle, transparent 1%, #626262 1%) center/15000%;
+  color: var(--color-neutral-100);
+  background: var(--color-purple-01-700) radial-gradient(circle, transparent 1%, var(--color-purple-01-700) 1%) center/15000%;
+  border-color: var(--color-purple-01-700);
 }
 .button:active {
-  background-color: #404040;
+  background: var(--color-purple-01-700);
   background-size: 100%;
   transition: all 0.333s ease-in-out;
 }
@@ -926,15 +929,15 @@ span.custom-label {
   }
 }
 .swal-button {
-  background-color: #111111;
-  color: #d9d9d9;
+  background: var(--color-purple-01-600);
+  color: var(--color-neutral-000);
 }
 .swal-button:not([disabled]):hover {
-  background: #626262 radial-gradient(circle, transparent 1%, #626262 1%) center/15000%;
+  background: var(--color-purple-01-700) radial-gradient(circle, transparent 1%, var(--color-purple-01-700) 1%) center/15000%;
 }
 .swal-button--cancel {
-  color: #d9d9d9;
-  background-color: #111111;
+  color: var(--color-neutral-000);
+  background-color: var(--color-semantic-alert-400);
 }
 li.todo-item {
   position: absolute;
@@ -953,14 +956,14 @@ li.todo-item {
   }
 }
 input[type="checkbox"] {
+  margin-right: 24px;
+  color: var(--color-augmented-000);
+  background-color: var(--color-purple-01-600);
   -ms-transform: scale(3);
   -moz-transform: scale(3);
   -webkit-transform: scale(3);
   -o-transform: scale(3);
   transform: scale(3);
-  margin-right: 24px;
-  background: #111111;
-  color: hsl(0, 0%, 99%);
 }
 @media (max-width: 360px) {
   input[type="checkbox"] {
@@ -968,8 +971,8 @@ input[type="checkbox"] {
   }
 }
 input[type="checkbox"]:checked {
-  background: #111111;
-  color: hsl(0, 0%, 99%);
+  background: var(--color-purple-01-600);
+  color: var(--color-augmented-000);
 }
 span.item {
   width: fit-content;
@@ -985,6 +988,7 @@ span.item {
 input.completed~span {
   text-decoration: line-through;
   text-decoration-thickness: 5px;
+  color: var(--color-purple-01-600);
 }
 .custom input {
   width: 0;
@@ -1004,7 +1008,7 @@ input.completed~span {
   left: 0;
   width: 24px;
   height: 24px;
-  background-color: #111111;
+  background-color: var(--color-purple-01-600);
 }
 @media (max-width: 576px) {
   .checkmark {
@@ -1012,10 +1016,10 @@ input.completed~span {
   }
 }
 .custom:hover .checkmark {
-  background-color: #626262;
+  background-color: var(--color-purple-01-600);
 }
 .custom input:checked~.checkmark {
-  background-color: #626262;
+  background-color: var(--color-purple-01-600);
 }
 .checkmark::after {
   content: '';
@@ -1040,11 +1044,17 @@ input.completed~span {
   cursor: pointer;
   transition: color 0.333s ease-in-out;
 }
+.fas.fa-trash-alt {
+  color: var(--color-semantic-alert-400);
+}
 .fas.fa-trash-alt:hover {
-  color: hsla(0, 87%, 49%, 1.0);
+  color: var(--color-semantic-alert-200);
+}
+.fas.fa-edit {
+  color: var(--color-semantic-warn-000);
 }
 .fas.fa-edit:hover {
-  color: rgb(67, 105, 225);
+  color: var(--color-semantic-extreme-warn-300);
 }
 @property --tw-rotate-x {
   syntax: "*";

@@ -28,16 +28,17 @@
    /* primary colors */
    /*--color-green-01-025: hsl(122.45, 37.4%, 74.31%);
    --color-green-01-050: hsl(122.42, 39.44%, 49.22%);*/
-   --color-green-01-000: hsl(122.42, 100%, 98%);
-   --color-green-01-100: hsl(122.42, 94%, 95%);
-   --color-green-01-200: hsl(122.42, 90%, 90%);
-   --color-green-01-300: hsl(122.42, 86%, 85%);
-   --color-green-01-400: hsl(122.42, 82%, 80%);
-   --color-green-01-500: hsl(122.42, 76%, 70%);
-   --color-green-01-600: hsl(122.42, 70%, 40%);
-   --color-green-01-700: hsl(122.42, 65%, 30%);
-   --color-green-01-800: hsl(122.42, 60%, 20%);
-   --color-green-01-900: hsl(122.42, 50%, 12%);
+
+   --color-purple-01-000: hsl(227.37, 42.22%, 95.88%);
+   --color-purple-01-100: hsl(227.37, 42.22%, 90.88%);
+   --color-purple-01-200: hsl(227.37, 42.22%, 80.88%);
+   --color-purple-01-300: hsl(227.37, 42.22%, 75.88%);
+   --color-purple-01-400: hsl(227.37, 42.22%, 70.88%);
+   --color-purple-01-500: hsl(227.37, 42.22%, 65.88%);
+   --color-purple-01-600: hsl(227.37, 42.22%, 55.88%);
+   --color-purple-01-700: hsl(227.37, 42.22%, 50.88%);
+   --color-purple-01-800: hsl(227.37, 42.22%, 45.88%);
+   --color-purple-01-900: hsl(227.37, 42.22%, 35.88%);
    /* neutral colors */
    --color-neutral-000: hsl(122.42, 0%, 98%);
    --color-neutral-100: hsl(122.42, 0%, 88%);
@@ -50,16 +51,16 @@
    --color-neutral-800: hsl(122.42, 0%, 18%);
    --color-neutral-900: hsl(122.42, 0%, 10%);
    /* augmented colors */
-   --color-augmented-000: hsl(122.42, 12%, 98%);
-   --color-augmented-100: hsl(122.42, 12%, 88%);
-   --color-augmented-200: hsl(122.42, 12%, 78%);
-   --color-augmented-300: hsl(122.42, 15%, 68%);
-   --color-augmented-400: hsl(122.42, 15%, 58%);
-   --color-augmented-500: hsl(122.42, 15%, 48%);
-   --color-augmented-600: hsl(122.42, 15%, 38%);
-   --color-augmented-700: hsl(122.42, 20%, 28%);
-   --color-augmented-800: hsl(122.42, 25%, 18%);
-   --color-augmented-900: hsl(122.42, 30%, 10%);
+   --color-augmented-000: hsl(227.37, 12%, 98%);
+   --color-augmented-100: hsl(227.37, 12%, 88%);
+   --color-augmented-200: hsl(227.37, 12%, 78%);
+   --color-augmented-300: hsl(227.37, 15%, 68%);
+   --color-augmented-400: hsl(227.37, 15%, 58%);
+   --color-augmented-500: hsl(227.37, 15%, 48%);
+   --color-augmented-600: hsl(227.37, 15%, 38%);
+   --color-augmented-700: hsl(227.37, 20%, 28%);
+   --color-augmented-800: hsl(227.37, 25%, 18%);
+   --color-augmented-900: hsl(227.37 30%, 10%);
    /************************* semantic colors *************************/
    /* semantic inform colors */
    --color-semantic-inform-400: hsl(215, 96%, 33%);
@@ -76,6 +77,7 @@
    --color-semantic-warn-300: hsl(44.94, 96%, 55%);
    --color-semantic-warn-200: hsl(44.94, 96%, 60%);
    --color-semantic-warn-100: hsl(44.94, 96%, 65%);
+   --color-semantic-warn-000: hsl(42.9, 74.4%, 49.02%);
    /* semantic extreme warn colors */
    --color-semantic-extreme-warn-400: hsl(28.47, 96%, 50%);
    --color-semantic-extreme-warn-300: hsl(28.47, 96%, 55%);
@@ -157,10 +159,42 @@
       outline: none;
    }
 
+
+
    html {
-      scroll-behavior: smooth;
+      font-size: 100%;
+      overflow-x: hidden;
+
+   }
+   @media (max-width: 576px) {
+      html {
+         font-size: 83.333%;
+      }
+   }
+   @media (max-width: 380px) {
+      html {
+         font-size: 75%;
+      }
    }
 
+   body {
+      position: relative;
+      height: 100dvh;
+      width: 100dvw;
+      overflow-x: hidden;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-body);
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 1px;
+      background-color: var(--color-neutral-100);
+   }
+/*
    body {
       position: relative;
       height: 100vh;
@@ -168,10 +202,11 @@
       display: flex;
       flex-direction: column;
       font-family: 'Sen', sans-serif;
-      letter-spacing: 1px;
-      overflow-x: hidden;
 
-   }
+      overflow-x: hidden;
+      background-color: var(--color-neutral-200);
+
+   }*/
 
    /*===============================================================
           Typography Scale - 1.250 - Major Third
@@ -180,6 +215,7 @@
       font-family: 'Sen', sans-serif;
       font-weight: 700;
       text-rendering: optimizeLegibility;
+      color: var(--color-purple-01-900);
    }
 
    h1 {
@@ -272,7 +308,7 @@
 
    /* handle on hover */
    ::-webkit-scrollbar-thumb:hover {
-      background-color: var(--color-green-01-600);
+      background-color: var(--color-purple-01-600);
       cursor: pointer;
    }
 
@@ -299,48 +335,6 @@
       color: var(--color-augmented-700);
       opacity: 0.5;
    }
-}
-
-
-
-
-
-/*===============================================================
-            root, html, body, and utility classes
-==================================================================*/
-
-
-html {
-   font-size: 100%;
-   overflow-x: hidden;
-
-}
-@media (max-width: 576px) {
-   html {
-      font-size: 83.333%;
-   }
-}
-@media (max-width: 380px) {
-   html {
-      font-size: 75%;
-   }
-}
-
-body {
-   position: relative;
-   height: 100dvh;
-   width: 100dvw;
-   overflow-x: hidden;
-   margin: 0;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   font-family: var(--font-body);
-   font-optical-sizing: auto;
-   font-weight: 400;
-   font-style: normal;
-   background-color: var(--color-neutral-000);
 }
 
 
@@ -516,6 +510,10 @@ p>label {
    margin-bottom: 1rem;
 }
 
+/*===============================================================
+            input[type=radio] styles
+==================================================================*/
+
 input[type="radio"] {
    /* remove the blue button styling by default */
    appearance: none;
@@ -679,6 +677,10 @@ input[type="radio"]:checked::before {
    align-content: space-evenly;
 }
 
+/*===============================================================
+            button styles
+==================================================================*/
+
 .calculate-button.button-3d,
 .reset-button.button-3d {
    position: relative;
@@ -738,6 +740,9 @@ button.button-3d:active {
    color: var(--color-neutral-900);
 }
 
+/*===============================================================
+            swal-button styles
+==================================================================*/
 
 .swal-button {
    background-color: var(--color-neutral-800);
@@ -816,12 +821,16 @@ button.button-3d:active {
    width: 50%;
    align-self: center;
 }*/
-
+ .outer-container {
+   position: absolute;
+   top: 15%;
+}
 
 /*===============================================================
           main styles
 ==================================================================*/
 #main {
+
    max-width: 640px;
    width: 640px;
    margin: 0 auto;
@@ -839,13 +848,21 @@ button.button-3d:active {
 }
 
 #header {
+
+
+}
+.header {
    height: 100px;
    margin-left: auto;
    margin-right: auto;
    display: flex;
    justify-content: center;
    align-items: center;
+}
 
+.header_title {
+   font-family: var(--font-body);
+   color: var(--color-purple-01-900);
 }
 
 #add-container {
@@ -854,10 +871,14 @@ button.button-3d:active {
    justify-content: center;
 }
 
-#title {
-   font-family: var(--font-body);
-   /*font-size: 3rem;*/
+/*#title {
+
+   !*font-size: 3rem;*!
 }
+.header_title {
+   font-family: var(--font-body);
+   color: var(--color-augmented-600);
+}*/
 
 .input-section {
    flex-basis: 65%;
@@ -865,20 +886,21 @@ button.button-3d:active {
    display: flex;
    flex-flow: row;
    justify-content: flex-start;
-   border: 4px solid #404040;
+   border: 2px solid #404040;
+   border: 2px solid var(--color-purple-01-600);
    border-right: none;
-   border-top-left-radius: 5px;
-   border-bottom-left-radius: 5px;
+   border-top-left-radius: 3px;
+   border-bottom-left-radius: 3px;
 }
 
 .counter {
    position: absolute;
    top: 15px;
    right: 10px;
-   border-left: 2px solid #111111;
    padding-left: 8px;
    padding-right: 8px;
-   font-family: 'DM Mono', monospace;
+   font-family: var(--font-body);
+   border-left: 3px solid var(--color-purple-01-600);
 }
 
 @media screen and (max-width: 425px) {
@@ -914,7 +936,7 @@ button.button-3d:active {
    letter-spacing: 1px;
    border: none;
    text-transform: capitalize;
-   caret-color: #404040;
+   caret-color: var(--color-augmented-700);
    caret-shape: block;
 }
 
@@ -955,10 +977,10 @@ span.custom-label {
 ==================================================================*/
 .button {
    padding: .5em 1em;
-   border: 3px solid #404040;
+   border: 3px solid var(--color-purple-01-600);
    border-radius: 5px;
-   color: #d9d9d9;
-   background-color: #111111;
+   color: var(--color-neutral-000);
+   background: var(--color-purple-01-600);
    font-size: 1rem;
    font-weight: bold;
    text-transform: uppercase;
@@ -968,12 +990,13 @@ span.custom-label {
 }
 
 .button:hover {
-   color: hsl(0, 0%, 100%);
-   background: #626262 radial-gradient(circle, transparent 1%, #626262 1%) center/15000%;
+   color: var(--color-neutral-100);
+   background: var(--color-purple-01-700) radial-gradient(circle, transparent 1%, var(--color-purple-01-700) 1%) center/15000%;
+   border-color: var(--color-purple-01-700);
 }
 
 .button:active {
-   background-color: #404040;
+   background: var(--color-purple-01-700);
    background-size: 100%;
    transition: all 0.333s ease-in-out;
 }
@@ -985,17 +1008,17 @@ span.custom-label {
 }
 
 .swal-button {
-   background-color: #111111;
-   color: #d9d9d9;
+   background: var(--color-purple-01-600);
+   color: var(--color-neutral-000);
 }
 
 .swal-button:not([disabled]):hover {
-   background: #626262 radial-gradient(circle, transparent 1%, #626262 1%) center/15000%;
+   background: var(--color-purple-01-700) radial-gradient(circle, transparent 1%, var(--color-purple-01-700) 1%) center/15000%;
 }
 
 .swal-button--cancel {
-   color: #d9d9d9;
-   background-color: #111111;
+   color: var(--color-neutral-000);
+   background-color: var(--color-semantic-alert-400);
 }
 
 /*===============================================================
@@ -1004,7 +1027,6 @@ span.custom-label {
 
 li.todo-item {
    position: absolute;
-   /*position: static;*/
    width: 108%;
    display: flex;
    flex-direction: row;
@@ -1021,15 +1043,19 @@ li.todo-item {
    }
 }
 
+/*===============================================================
+            input [type='checkbox']
+==================================================================*/
+
 input[type="checkbox"] {
+   margin-right: 24px;
+   color: var(--color-augmented-000);
+   background-color: var(--color-purple-01-600);
    -ms-transform: scale(3);
    -moz-transform: scale(3);
    -webkit-transform: scale(3);
    -o-transform: scale(3);
    transform: scale(3);
-   margin-right: 24px;
-   background: #111111;
-   color: hsl(0, 0%, 99%);
 }
 @media (max-width: 360px) {
    input[type="checkbox"] {
@@ -1039,8 +1065,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-   background: #111111;
-   color: hsl(0, 0%, 99%);
+   background: var(--color-purple-01-600);
+   color: var(--color-augmented-000);
 }
 
 span.item {
@@ -1057,6 +1083,7 @@ span.item {
 input.completed~span {
    text-decoration: line-through;
    text-decoration-thickness: 5px;
+   color: var(--color-purple-01-600);
 
 }
 
@@ -1083,7 +1110,7 @@ input.completed~span {
    left: 0;
    width: 24px;
    height: 24px;
-   background-color: #111111;
+   background-color: var(--color-purple-01-600);
 }
 
 @media (max-width: 576px) {
@@ -1093,12 +1120,12 @@ input.completed~span {
 }
 
 .custom:hover .checkmark {
-   background-color: #626262;
+   background-color: var(--color-purple-01-600);
 }
 
 /* checked state on styling */
 .custom input:checked~.checkmark {
-   background-color: #626262;
+   background-color: var(--color-purple-01-600);
 
 }
 
@@ -1132,11 +1159,17 @@ input.completed~span {
    cursor: pointer;
    transition: color 0.333s ease-in-out;
 }
-
-.fas.fa-trash-alt:hover {
-   color: hsla(0, 87%, 49%, 1.0)
+.fas.fa-trash-alt {
+   color: var(--color-semantic-alert-400);
 }
 
+.fas.fa-trash-alt:hover {
+   color: var(--color-semantic-alert-200);
+}
+
+.fas.fa-edit {
+   color: var(--color-semantic-warn-000);
+}
 .fas.fa-edit:hover {
-   color: rgb(67, 105, 225);
+   color: var(--color-semantic-extreme-warn-300);
 }

@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
          if (todo.id === id) {
             todo.todoItem = todoItem;
             todo.isChecked = isChecked;
-            console.log(getElementPositionTop(todo))
+            // console.log(getElementPositionTop(todo))
          }
          return todo;
       });
