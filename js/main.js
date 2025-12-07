@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let inputValue = addInput.value.trim();
       const id = self.crypto.randomUUID();
       let isChecked = false;
-      let top = setElementPositionTop();
+      // let top = setElementPositionTop();
 
       if (inputValue && !isEditing) {
-         createListItem(id, inputValue, isChecked, top);
-         addTodoItemToLocalStorage(id, inputValue, isChecked, top);
-         updateTodoItemTopPositionToLocalStorage();
+         createListItem(id, inputValue, isChecked);
+         addTodoItemToLocalStorage(id, inputValue, isChecked);
+         // updateTodoItemTopPositionToLocalStorage();
          setToDefaultSettings();
 
       } else if (inputValue && isEditing) {
@@ -111,18 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
          let inputValue = addInput.value.trim();
          const id = self.crypto.randomUUID();
          let isChecked = false;
-         let top = setElementPositionTop();
+         // let top = setElementPositionTop();
 
          if (inputValue && !isEditing) {
-            let attr1 = document.createAttribute('data-id');
-            let attr2 = document.createAttribute('data-top');
-            attr1.value = id;
-            attr2.value = top.toString();
+            let attribute = document.createAttribute('data-id');
+            // let attr2 = document.createAttribute('data-top');
+            attribute.value = id;
+            // attr2.value = top.toString();
             isChecked = hasClass('input.checkbox', 'completed');
 
-            createListItem(id, inputValue, isChecked, top);
-            addTodoItemToLocalStorage(id, inputValue, isChecked, top);
-            updateTodoItemTopPositionToLocalStorage();
+            createListItem(id, inputValue, isChecked);
+            addTodoItemToLocalStorage(id, inputValue, isChecked);
+            // updateTodoItemTopPositionToLocalStorage();
             setToDefaultSettings();
 
          } else if (inputValue && isEditing) {
@@ -239,18 +239,16 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param top - the offsetTop position of the todoItem in relation to the
     * toDoList (its parent)
     */
-   function createListItem(id, todoItem, isChecked, top) {
-      let attr1 = document.createAttribute('data-id');
-      let attr2 = document.createAttribute('data-top');
-      attr1.value = id;
-      attr2.value = top;
+   function createListItem(id, todoItem, isChecked) {
+      let attribute = document.createAttribute('data-id');
+      // let attr2 = document.createAttribute('data-top');
+      attribute.value = id;
+      // attr2.value = top;
 
       const template = document.querySelector('#template');
       const clone = document.importNode(template.content, true);
-      clone.querySelector('.todo-item').setAttributeNode(attr1);
-      clone.querySelector('.todo-item').setAttributeNode(attr2);
+      clone.querySelector('.todo-item').setAttributeNode(attribute);
       clone.querySelector('.todo-item').setAttribute('draggable', 'true');
-      clone.querySelector('.todo-item').style.top = top + 'px';
       clone.querySelector('.item').textContent = todoItem;
       clone
          .querySelector('.checkbox')
@@ -274,17 +272,13 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param top - the offsetTop position of the todoItem in relation to the
     * toDoList (its parent)
     */
-   function createDisplayListItem(id, todoItem, isChecked, top) {
-      let attr1 = document.createAttribute('data-id');
-      let attr2 = document.createAttribute('data-top');
-      attr1.value = id;
-      attr2.value = top;
+   function createDisplayListItem(id, todoItem, isChecked) {
+      let attribute = document.createAttribute('data-id');
+      attribute.value = id;
 
       const template = document.querySelector('#template');
       const clone = document.importNode(template.content, true);
-      clone.querySelector('.todo-item').setAttributeNode(attr1);
-      clone.querySelector('.todo-item').setAttributeNode(attr2);
-      clone.querySelector('.todo-item').style.top = top + 'px';
+      clone.querySelector('.todo-item').setAttributeNode(attribute);
       clone.querySelector('.item').textContent = todoItem;
       clone
          .querySelector('.checkbox')
@@ -296,8 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       toDoList.appendChild(clone);
 
-      // updateTodoItemPositionTopToLocalStorage(id);
-
    } // end of createDisplayListItem function
 
    /**
@@ -308,26 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (localToDoList.length > 0) {
          localToDoList.forEach(todo =>
-            createDisplayListItem(todo.id, todo.todoItem, todo.isChecked, todo.top));
+            createDisplayListItem(todo.id, todo.todoItem, todo.isChecked));
       }
-
-      let todoItems = document.querySelectorAll('.todo-item');
-      todoItems = Array.from(todoItems);
-      let positionY;
-
-      for (let item of todoItems) {
-         positionY = getElementPositionTop(item);
-         item.dataset.top = positionY.toString();
-         item.style.top = positionY.toString() + 'px';
-      }
-
-      for (let index in localToDoList) {
-         if (localToDoList[index].id === todoItems[index].dataset.id) {
-            localToDoList[index].top = todoItems[index].dataset.top;
-         }
-      }
-
-      localToDoList.sort((a, b) => a.top - b.top);
 
       localStorage.setItem('simple-toDoApp', JSON.stringify(localToDoList));
 
@@ -338,10 +312,10 @@ document.addEventListener('DOMContentLoaded', () => {
     * @returns {any|*[]} - an array of todoItem Objects or an empty Array
     */
    function getInitialTodoList() {
-      /************************* get the gfg-toDoApp *************************/
+      /************************* get the simple-toDoApp *************************/
       const localTodoList = localStorage.getItem('simple-toDoApp');
 
-      /************************* parse gfg-toDoApp to JSON format, if not empty *************************/
+      /************************* parse simple-toDoApp to JSON format, if not empty *************************/
       if (localTodoList) {
          return JSON.parse(localTodoList);
       }
@@ -366,14 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param id - the todoItem ID
     * @param todoItem - the todoItem text
     * @param isChecked - the checked/completed status of the todoItem
-    * @param top - the vertical position of the todoItem in its parent
     */
-   function addTodoItemToLocalStorage(id, todoItem, isChecked, top) {
+   function addTodoItemToLocalStorage(id, todoItem, isChecked) {
       const todo = {
          id,
          todoItem,
-         isChecked,
-         top
+         isChecked
       };
 
       let localStorageTodoListArr = getLocalStorage();
@@ -393,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorageTodoListArr = localStorageTodoListArr.filter(todo => todo.id !== id);
 
       localStorage.setItem('simple-toDoApp', JSON.stringify(localStorageTodoListArr));
-      updateTodoItemPositionTop();
+
 
    }//end of removeTodoItemFromLocalStorage Function
 
@@ -427,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
          if (todo.id === id) {
             todo.todoItem = todoItem;
             todo.isChecked = isChecked;
-            // console.log(getElementPositionTop(todo))
+
          }
          return todo;
       });
@@ -435,37 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('simple-toDoApp', JSON.stringify(localToDoListArr));
 
    } //end of updateEditTodoItemToLocalStorage function
-
-   /**
-    * @description - updates the todoItem's data-top position to the localStorage
-    */
-   function updateTodoItemTopPositionToLocalStorage() {
-      let localToDoListArr = getLocalStorage();
-
-      let todoItems = document.querySelectorAll('.todo-item');
-      todoItems = Array.from(todoItems);
-
-      let positionY = null;
-
-      if (localToDoListArr.length > 0) {
-         for (let todoItem of todoItems) {
-            positionY = getElementPositionTop(todoItem);
-            todoItem.dataset.top = positionY.toString();
-
-         }
-         for (let index in localToDoListArr) {
-            if (localToDoListArr[index].id === todoItems[index].dataset.id) {
-               localToDoListArr[index].top = todoItems[index].dataset.top;
-
-            }
-         }
-
-         localToDoListArr = localToDoListArr.sort((a, b) => a.top - b.top);
-
-         localStorage.setItem('simple-toDoApp', JSON.stringify(localToDoListArr));
-      }
-
-   }//end of the updateTodoItemPositionToLocalStorage function
 
    /**
     * @description - sets the default settings
@@ -494,37 +435,9 @@ document.addEventListener('DOMContentLoaded', () => {
    } //end of the getCharacterCount function
 
    /**
-    * @description - gets the offsetTop of an element
-    * @param elem - the element
-    * @returns {number} - a rounded number of the element's offsetTop
-    */
-   function getElementPositionTop(elem) {
-      return Math.round(elem.offsetTop);
-
-   }//end of getElementPositionTop function
-
-   /**
-    * @description - sets the initial position top of the todoItem
-    * @returns {string} - a value in form of a String
-    */
-   function setElementPositionTop() {
-      let position;
-
-      if (toDoList.lastElementChild === null) {
-         position = 0;
-
-      } else {
-         position = Math.round(getElementPositionTop(toDoList.lastElementChild) + TODO_ITEM_HEIGHT);
-
-      }
-      return position.toString();
-
-   }//end of setElementPositionTop function
-
-   /**
     * @description - checks whether an element has a class or not
-    * @param elem - the element
-    * @param namedClass - the class name
+    * @param elem - the specified element
+    * @param namedClass - the specified class name
     * @returns {boolean} - true if the element has the named class, otherwise,
     * returns false.
     */
@@ -532,40 +445,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return ('' + elem.className + '').indexOf('' + namedClass + '') > -1;
 
    } //end of hasClass function
-
-   /**
-    * @description - updates todoItem dataset/.top to its current position and assigns
-    * the value to the todo in the local storage
-    */
-   function updateTodoItemPositionTop() {
-
-      let todoItems = document.querySelectorAll('.todo-item');
-      todoItems = Array.from(todoItems);
-
-      if (todoItems.length > 0) {
-         let localToDoListArr = getLocalStorage();
-         let positionY = null;
-
-         for (let todoItem of todoItems) {
-            positionY = getElementPositionTop(todoItem);
-            // positionY = setElementPositionTop();
-            todoItem.dataset.top = positionY.toString();
-
-         }
-
-         for (let index in localToDoListArr) {
-            if (localToDoListArr[index].id === todoItems[index].dataset.id) {
-               localToDoListArr[index].top = todoItems[index].dataset.top;
-            }
-         }
-
-         localToDoListArr.sort((a, b) => a.top - b.top);
-
-         localStorage.setItem('simple-toDoApp', JSON.stringify(localToDoListArr));
-
-      }
-
-   }//end of updateTodoItemPositionTop function
 
    /**
     * @description - monitors the moving of the draggable element from the original
