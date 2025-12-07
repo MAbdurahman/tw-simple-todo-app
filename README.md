@@ -5,7 +5,18 @@ to manage their tasks dynamically. On desktops and laptops, drag and drop featur
 to arrange and rearrange their tasks. Tasks are persisted in the browser's local storage, ensuring that
 users can access their tasks even after closing the browser.
 
-# To Use 
+## Features
+
+- HTML5
+- CSS3
+- Tailwind CSS
+- JavaScript
+- Local Storage
+- Drag and Drop
+- Responsive Design
+- SweetAlert2
+
+## To Use 
 
 Clone or Download the repository
 `git clone  https://github.com/MAbdurahman/tw-simple-todo-app.git`
@@ -23,3 +34,5 @@ To build the project, run the following command
 (builds to `css/main.css`, which is the final CSS file)
 
 `npm run build or yarn build`
+
+![Image](https://github.com/user-attachments/assets/e6f8a441-ed71-4705-934a-a2bd4f5c9f1e)
