@@ -1041,6 +1041,7 @@ li.todo-item {
 @media (max-width: 576px) {
    li.todo-item {
       width: 100%;
+      left: -5px;
    }
 }
 

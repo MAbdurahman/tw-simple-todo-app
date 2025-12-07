@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
    const counter = document.getElementById('counter');
    const maxLength = addInput.getAttribute('maxlength');
    const windowScreen = window.screen.availWidth;
-   const TODO_ITEM_HEIGHT = 42.6;
 
    let isEditing = false;
    let editID = '';
@@ -78,12 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let inputValue = addInput.value.trim();
       const id = self.crypto.randomUUID();
       let isChecked = false;
-      // let top = setElementPositionTop();
 
       if (inputValue && !isEditing) {
          createListItem(id, inputValue, isChecked);
          addTodoItemToLocalStorage(id, inputValue, isChecked);
-         // updateTodoItemTopPositionToLocalStorage();
          setToDefaultSettings();
 
       } else if (inputValue && isEditing) {
@@ -111,18 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
          let inputValue = addInput.value.trim();
          const id = self.crypto.randomUUID();
          let isChecked = false;
-         // let top = setElementPositionTop();
 
          if (inputValue && !isEditing) {
             let attribute = document.createAttribute('data-id');
-            // let attr2 = document.createAttribute('data-top');
             attribute.value = id;
-            // attr2.value = top.toString();
             isChecked = hasClass('input.checkbox', 'completed');
 
             createListItem(id, inputValue, isChecked);
             addTodoItemToLocalStorage(id, inputValue, isChecked);
-            // updateTodoItemTopPositionToLocalStorage();
             setToDefaultSettings();
 
          } else if (inputValue && isEditing) {
@@ -236,14 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param id - todoItem ID
     * @param todoItem - todoItem text content
     * @param isChecked - a boolean, whether the todoItem is completed or not
-    * @param top - the offsetTop position of the todoItem in relation to the
-    * toDoList (its parent)
     */
    function createListItem(id, todoItem, isChecked) {
       let attribute = document.createAttribute('data-id');
-      // let attr2 = document.createAttribute('data-top');
       attribute.value = id;
-      // attr2.value = top;
 
       const template = document.querySelector('#template');
       const clone = document.importNode(template.content, true);
@@ -260,8 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       toDoList.appendChild(clone);
 
-      // updateTodoItemPositionTopToLocalStorage(id);
-
    } //end of the createListItem function
 
    /**
@@ -269,8 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param id - the todoItem ID
     * @param todoItem - the todoItem text
     * @param isChecked - the checked/completed status of the todoItem
-    * @param top - the offsetTop position of the todoItem in relation to the
-    * toDoList (its parent)
     */
    function createDisplayListItem(id, todoItem, isChecked) {
       let attribute = document.createAttribute('data-id');
@@ -293,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
    } // end of createDisplayListItem function
 
    /**
-    * @description - displays the toDoLists
+    * @description - displays the toDoList
     */
    function displayTodoItems() {
       localToDoList = getLocalStorage();
@@ -320,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
          return JSON.parse(localTodoList);
       }
 
-      /************************* localStorage is empty, set it to 'gfg-toDoApp' *************************/
+      /************************* localStorage is empty, set it to 'simple-toDoApp' *************************/
       localStorage.setItem('simple-toDoApp', []);
       return [];
 
@@ -356,8 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }//end of addTodoItemToLocalStorage Function
 
    /**
-    * @description - removes todoItem from localStorage and calls the function
-    * updateTodoItemPositionTop
+    * @description - removes todoItem from localStorage
     * @param id - todoItem ID
     */
    function removeTodoItemFromLocalStorage(id) {
@@ -365,7 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorageTodoListArr = localStorageTodoListArr.filter(todo => todo.id !== id);
 
       localStorage.setItem('simple-toDoApp', JSON.stringify(localStorageTodoListArr));
-
 
    }//end of removeTodoItemFromLocalStorage Function
 
@@ -520,7 +503,6 @@ document.addEventListener('DOMContentLoaded', () => {
          toDoList.insertBefore(draggedItem, afterElement);
 
       }
-
 
    }//end of handleDragOver function
 
