@@ -2,7 +2,7 @@
   "name": "tw-simple-todo-app",
   "version": "1.0.0",
   "description": "Simple application using HTML5, CSS3 with Tailwind CSS, and JavaScript",
-  "main": "js/main.js",
+  "main": "js/scripts.js",
   "type": "module",
   "repository": "https://github.com/MAbdurahman/tw-simple-todo-app.git",
   "author": "Mahdi Abdurrahman <mdbdrrhm@gmail.com>",

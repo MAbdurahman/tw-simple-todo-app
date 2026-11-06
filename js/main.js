@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
    const toDoList = document.getElementById('list');
    const counter = document.getElementById('counter');
 
-
    const maxLength = addInput.getAttribute('maxlength');
    const windowScreen = window.screen.availWidth;
 
@@ -51,10 +50,8 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
       navigator.storage.persist().then((persistent) => {
          if (persistent) {
             console.log('Storage will not be cleared except by explicit user action');
-
          } else {
             console.log('Storage may be cleared by the UA under storage pressure.');
-
          }
       });
    }
@@ -66,14 +63,9 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
    } else {
       addInput.setAttribute('maxlength', '28');
       counter.innerText = '28';
-
    }
 
    /************************* functions *************************/
-   /**
-    * @description - adds a todoItem to the toDoList with clicking the addButton
-    * @param e - the click event of the addButton
-    */
    const addTodoItem = e => {
       e.preventDefault();
       let inputValue = addInput.value.trim();
@@ -100,10 +92,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
       }
    }//end of addTodoItem function
 
-   /**
-    * @description - adds a todoItem to the toDoList with pressing the enter key
-    * @param e - the keydown event of input[type=text]
-    */
    const addTodoItemWithEnterKey = e => {
       if (e.keyCode === 13) {
          let inputValue = addInput.value.trim();
@@ -143,11 +131,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
       }
    }//end of addToDoItemWithEnterKey Function
 
-   /**
-    * @description - adds the text content of the todoItem to the input[type=text] for
-    * editing
-    * @param e - the click event of clicking the fa-edit icon
-    */
    const editTodoItem = e => {
       if (e.target.classList.contains('fa-edit')) {
          const todoItem = e.target.parentElement.parentElement;
@@ -168,10 +151,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
       }
    }//end of editTodoItem Function
 
-   /**
-    * @description - deletes the todoItem from the toDoList
-    * @param e - the click event of clicking the fa-trash-alt icon
-    */
    const deleteTodoItem = e => {
       if (e.target.classList.contains('fa-trash-alt')) {
          swal({
@@ -203,37 +182,21 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
       }
    }//end of deleteTodoItem Function
 
-   /**
-    * @description - toggles the completed class to the todoItem and calls function to
-    * update completed status to localStorage
-    * @param e - the click event of clicking the todoItem
-    */
    const updateIsCheckedStatus = e => {
       const id = e.target.parentElement.parentElement.dataset.id;
       const edit = e.target.parentElement.parentElement.children[1].children[0];
 
-      edit.classList.add('display-hidden');
       if (e.target.checked === true) {
          e.target.setAttribute('class', 'completed');
-         edit.classList.add('display-hidden');
-         console.log(edit.classList)
          updateIsCheckedToLocalStorage(id, true);
 
       } else {
          e.target.removeAttribute('class', 'completed');
-         edit.classList.remove('display-hidden');
-         console.log(edit.classList)
          updateIsCheckedToLocalStorage(id, false);
 
       }
    }//end of updateIsCheckedStatus Function
 
-   /**
-    * @description - creates the list item for the toDoList
-    * @param id - todoItem ID
-    * @param todoItem - todoItem text content
-    * @param isChecked - a boolean, whether the todoItem is completed or not
-    */
    const createListItem = (id, todoItem, isChecked) => {
       let attribute = document.createAttribute('data-id');
       attribute.value = id;
@@ -255,12 +218,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of the createListItem function
 
-   /**
-    * @description - creates a todoItem that is to be displayed
-    * @param id - the todoItem ID
-    * @param todoItem - the todoItem text
-    * @param isChecked - the checked/completed status of the todoItem
-    */
    const createDisplayListItem = (id, todoItem, isChecked) => {
       let attribute = document.createAttribute('data-id');
       attribute.value = id;
@@ -282,9 +239,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } // end of createDisplayListItem function
 
-   /**
-    * @description - displays the toDoList
-    */
    const displayTodoItems = () => {
       localToDoList = getLocalStorage();
 
@@ -297,10 +251,19 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of displayTodoItems function
 
-   /**
-    * @description - get the data of the localStorage
-    * @returns {any|*[]} - an array of todoItem Objects or an empty Array
-    */
+   const saveTodoOrder = () => {
+      const todos = getLocalStorage();
+
+      const orderedIds = [...toDoList.querySelectorAll('.todo-item')]
+         .map(item => item.dataset.id);
+
+      const orderedTodos = orderedIds
+         .map(id => todos.find(todo => todo.id === id))
+         .filter(Boolean);
+
+      localStorage.setItem('simple-toDoApp', JSON.stringify(orderedTodos));
+   };
+
    function getInitialTodoList() {
       /************************* get the simple-toDoApp *************************/
       const localTodoList = localStorage.getItem('simple-toDoApp');
@@ -316,21 +279,11 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of getInitialTodoList function
 
-   /**
-    * @description - gets the data of the localStorage
-    * @returns {any|*[]} - an array of todoItem Objects or an empty Array
-    */
    const getLocalStorage = () => {
       return localStorage.getItem('simple-toDoApp') ? JSON.parse(localStorage.getItem('simple-toDoApp')) : [];
 
    }//end of getLocalStorage function
 
-   /**
-    * @description - adds the todoItem to localStorage
-    * @param id - the todoItem ID
-    * @param todoItem - the todoItem text
-    * @param isChecked - the checked/completed status of the todoItem
-    */
    const addTodoItemToLocalStorage = (id, todoItem, isChecked) => {
       const todo = {
          id,
@@ -345,10 +298,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    }//end of addTodoItemToLocalStorage Function
 
-   /**
-    * @description - removes todoItem from localStorage
-    * @param id - todoItem ID
-    */
    const removeTodoItemFromLocalStorage = id => {
       let localStorageTodoListArr = getLocalStorage();
       localStorageTodoListArr = localStorageTodoListArr.filter(todo => todo.id !== id);
@@ -357,11 +306,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    }//end of removeTodoItemFromLocalStorage Function
 
-   /**
-    * @description - updates the completed state of the todoItem to localStorage
-    * @param id - the todoItem ID
-    * @param isChecked - true or false, whether the todoItem is completed
-    */
    const updateIsCheckedToLocalStorage = (id, isChecked) => {
       let localToDoListArr = getLocalStorage();
       localToDoListArr = localToDoListArr.map(function (todo) {
@@ -375,12 +319,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of updateIsCheckedToLocalStorage function
 
-   /**
-    * @description - updates the edited todoItem to the localStorage
-    * @param id - the edited todoItem ID
-    * @param todoItem - the edited todoItem text
-    * @param isChecked - the checked/completed status of edited todoItem
-    */
    const updateEditTodoItemToLocalStorage = (id, todoItem, isChecked) => {
       let localToDoListArr = getLocalStorage();
       localToDoListArr = localToDoListArr.map(todo => {
@@ -396,9 +334,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of updateEditTodoItemToLocalStorage function
 
-   /**
-    * @description - sets the default settings
-    */
    const setToDefaultSettings = () => {
       addButton.innerText = 'Add Item';
       isEditing = false;
@@ -413,34 +348,17 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    } //end of setToDefaultSettings function
 
-   /**
-    * @description - counts remaining character count for input[type=text]
-    */
    const getCharacterCount = () => {
       let characterCount = maxLength - addInput.value.length;
       characterCount < 10 ? counter.innerText = `0${characterCount}` : counter.innerText = `${characterCount}`;
 
    } //end of the getCharacterCount function
 
-   /**
-    * @description - checks whether an element has a class or not
-    * @param elem - the specified element
-    * @param namedClass - the specified class name
-    * @returns {boolean} - true if the element has the named class, otherwise,
-    * returns false.
-    */
    const hasClass = (elem, namedClass) => {
       return ('' + elem.className + '').indexOf('' + namedClass + '') > -1;
 
    } //end of hasClass function
 
-   /**
-    * @description - monitors the moving of the draggable element from the original
-    * container to the drop zone
-    * @param container - the original container
-    * @param y - the vertical position
-    * @returns {*} - offset to Number.NEGATIVE_INFINITY
-    */
    const getDragAfterElement = (container, y) => {
       const draggableElements = [
          ...container.querySelectorAll('li:not(.dragging)')
@@ -466,10 +384,6 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    }//end of getDragAfterElement function
 
-   /**
-    * @description - monitors the start of dragging the draggable element
-    * @param e - the event of dragstart
-    */
    const handleDragStart = e => {
       draggedItem = e.target;
 
@@ -479,23 +393,13 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
 
    }//end of handleDragStart function
 
-   /**
-    * @description - monitors the end of dragging the draggable element
-    * @param e - the event of dragend
-    */
    const handleDragEnd = e => {
-      setTimeout(() => {
-         e.target.style.display = '';
-         draggedItem = null;
-      }, 0);
+      e.target.style.display = '';
+      saveTodoOrder();
+      draggedItem = null;
+   };
 
-   }//end of handleDragEnd function
 
-   /**
-    * @description - monitors when the dragging element is dragged over a valid drop
-    * target
-    * @param e - the event of dragover
-    */
    const handleDragOver = e => {
       e.preventDefault();
       const afterElement = getDragAfterElement(toDoList, e.clientY);
@@ -518,10 +422,15 @@ document.addEventListener('DOMContentLoaded', qualifiedName => {
    addInput.addEventListener('keyup', getCharacterCount);
    toDoList.addEventListener('click', deleteTodoItem);
    toDoList.addEventListener('click', editTodoItem);
-   toDoList.addEventListener('dragstart', handleDragStart);
-   toDoList.addEventListener('dragend', handleDragEnd);
-   toDoList.addEventListener('dragover', handleDragOver);
+
+   Sortable.create(toDoList, {
+      animation: 150,
+      draggable: '.todo-item',
+
+      onEnd() {
+         saveTodoOrder();
+      }
+   });
 
    displayTodoItems();
-
 });

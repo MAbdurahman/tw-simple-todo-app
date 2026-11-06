@@ -22,6 +22,14 @@
     <link rel="stylesheet" href='css/normalize.css'>
     <!--main styles-->
     <link href='css/main.css' rel="stylesheet">
+	<!-- jquery scripts -->
+	<script defer src='js/jquery-3.7.1.min.js'></script>
+	<!-- sweetalert scripts -->
+	<script defer src='js/sweetalert.min.js'></script>
+	<!--Sortable scripts-->
+	<script defer src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+	<!-- main scripts -->
+	<script defer src="js/main.js"></script>
     <title>Simple Todo App</title>
 </head>
 <body>
@@ -38,7 +46,7 @@
         <div id="add-container">
             <section class="input-section">
                 <label for="add-input" style="display: none;"></label>
-                <input autocomplete="on" id="add-input" class="add-input" maxlength="28"
+                <input autocomplete="off" id="add-input" class="add-input" maxlength="28"
                        placeholder="Enter todo item" type="text"/>
                 <span class="counter" id="counter">28</span>
             </section>
@@ -63,12 +71,5 @@
         </li>
     </template>
 </div>
-
-<!-- jquery scripts -->
-<script src='js/jquery-3.7.1.min.js'></script>
-<!-- sweetalert scripts -->
-<script src='js/sweetalert.min.js'></script>
-<!-- main scripts -->
-<script src='js/main.js'></script>
 </body>
 </html>

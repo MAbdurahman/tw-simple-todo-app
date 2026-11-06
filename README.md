@@ -1,9 +1,9 @@
 # tw-simple-todo-app
 This is a simple application that allows users to create, read, update, and delete (CRUD) tasks. It uses
 HTML5 for structure, CSS3 with Tailwind CSS for styling, and JavaScript for functionality, enabling users
-to manage their tasks dynamically. On desktops and laptops, drag and drop feature is added to allow users
+to manage their tasks dynamically. On desktops, laptops, and smartPhones drag and drop feature is added to allow users
 to arrange and rearrange their tasks. Tasks are persisted in the browser's local storage, ensuring that
-users can access their tasks even after closing the browser.
+users can access their tasks even after closing the browser. With Sortable.js, drag and drop positions persist.
 
 ## Features
 
@@ -13,6 +13,7 @@ users can access their tasks even after closing the browser.
 - JavaScript
 - Local Storage
 - Drag and Drop
+- Sortable js
 - Responsive Design
 - SweetAlert2
 
@@ -34,5 +35,7 @@ To build the project, run the following command
 (builds to `css/main.css`, which is the final CSS file)
 
 `npm run build or yarn build`
+
+### [Live preview](https://tw-simple-todo-app.netlify.app/)
 
 ![Image](https://github.com/user-attachments/assets/e6f8a441-ed71-4705-934a-a2bd4f5c9f1e)
