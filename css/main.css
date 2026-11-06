@@ -1057,6 +1057,9 @@ input.completed~span {
 .fas.fa-edit:hover {
   color: var(--color-semantic-extreme-warn-300);
 }
+.display-hidden {
+  display: none !important;
+}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;

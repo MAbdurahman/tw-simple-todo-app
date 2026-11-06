@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /*===============================================================
          Scripts for the tw-simple-todo-app
 ==================================================================*/
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', qualifiedName => {
    let localToDoList = getInitialTodoList();
 
    /************************* variables *************************/
@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
    const addInput = document.getElementById('add-input');
    const toDoList = document.getElementById('list');
    const counter = document.getElementById('counter');
+
+
    const maxLength = addInput.getAttribute('maxlength');
    const windowScreen = window.screen.availWidth;
 
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
    let editItem;
    let editItemText;
    let editItemIsChecked = false;
+
+   let isChecked = false;
 
    let draggedItem = null;
 
@@ -74,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       let inputValue = addInput.value.trim();
       const id = self.crypto.randomUUID();
-      let isChecked = false;
+      isChecked = false;
 
       if (inputValue && !isEditing) {
          createListItem(id, inputValue, isChecked);
@@ -104,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.keyCode === 13) {
          let inputValue = addInput.value.trim();
          const id = self.crypto.randomUUID();
-         let isChecked = false;
+         isChecked = false;
 
          if (inputValue && !isEditing) {
             let attribute = document.createAttribute('data-id');
@@ -206,13 +210,19 @@ document.addEventListener('DOMContentLoaded', () => {
     */
    const updateIsCheckedStatus = e => {
       const id = e.target.parentElement.parentElement.dataset.id;
+      const edit = e.target.parentElement.parentElement.children[1].children[0];
 
+      edit.classList.add('display-hidden');
       if (e.target.checked === true) {
          e.target.setAttribute('class', 'completed');
+         edit.classList.add('display-hidden');
+         console.log(edit.classList)
          updateIsCheckedToLocalStorage(id, true);
 
       } else {
          e.target.removeAttribute('class', 'completed');
+         edit.classList.remove('display-hidden');
+         console.log(edit.classList)
          updateIsCheckedToLocalStorage(id, false);
 
       }
@@ -267,7 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
          : clone.querySelector('.checkbox').classList.remove('completed');
       clone.querySelector('.checkbox').checked = isChecked;
 
-      toDoList.appendChild(clone);
+
+      toDoList.appendChild(clone)
 
    } // end of createDisplayListItem function
 
