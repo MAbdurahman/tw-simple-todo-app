@@ -15,7 +15,7 @@ users can access their tasks even after closing the browser. With Sortable.js, d
 - Drag and Drop
 - Sortable js
 - Responsive Design
-- SweetAlert2
+- SweetAlert
 
 ## To Use 
 
